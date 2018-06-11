@@ -2,7 +2,7 @@
 FROM ubuntu:16.04
 
 # give our new image a name
-LABEL Name=azurebatchaicustomcontainerspike Version=0.0.1
+LABEL Name=mroondocker Version=0.0.1
 
 # set the bash shell as default
 # note: this is required. if not set, we cannot "run interactive" the image
