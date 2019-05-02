@@ -12,10 +12,17 @@ CMD /bin/bash
 ARG DEBIAN_FRONTEND=noninteractive
 
 # update Ubuntu's package information
-RUN apt-get update -y
+RUN apt-get update -y -qq
+
+# update os.
+RUN apt-get dist-upgrade -y -qq
 
 # install some basic packages needed later
 RUN apt-get install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev unzip curl apt-transport-https unixodbc unixodbc-dev -y
+
+# cleanup apt-get mess
+RUN apt-get autoremove -y -qq
+
 
 # install Microsoft R Open (with MKL)
 # notes: - see https://mran.microsoft.com/download for newest versions

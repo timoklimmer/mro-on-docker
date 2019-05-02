@@ -24,3 +24,7 @@ Get your current subscription details
 
 create the SP
 ````az ad sp create-for-rbac -n "packer-4711" --role contributor --scopes /subscriptions/YOURSUBSCRIPTIONIDGOESHERE````
+
+
+# Related Docs
+https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-deploy-and-where#aci
