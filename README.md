@@ -23,7 +23,6 @@ The SP will be used by Azure DevOps to connect to your Azure subscription and ma
 
 ````az ad sp create-for-rbac -n "packer-4711" --role contributor --scopes /subscriptions/YOURSUBSCRIPTIONIDGOESHERE````
 
-
 ### create an azure container registry (azurecr.io)
 This will your main container registry.
 ````az acr create -n MyRegistry -g MyResourceGroup --sku Standard````
@@ -31,5 +30,5 @@ This will your main container registry.
 azure container registry docker login
 ````az acr login --name ACRNAME -l westeurope````
 
-# Related Docs
+## Related Docs
 https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-deploy-and-where#aci
