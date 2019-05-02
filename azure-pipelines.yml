@@ -12,7 +12,7 @@ pool:
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'datascience4711'
+    containerRegistry: 'datascienceacr4711'
     repository: 'mro-on-docker'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
