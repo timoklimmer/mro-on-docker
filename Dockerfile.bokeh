@@ -1,8 +1,12 @@
-FROM continuumio/miniconda:latest
+FROM continuumio/miniconda3:latest
+# give our new image a name
+LABEL Name=miniconda-on-docker Version=0.0.1
+
 ENV CONDA_DIR="/opt/conda"
 ENV PATH="$CONDA_DIR/bin:$PATH"
 ENV BOKEH_EXAMPLE_DIR bokeh_examples
-
+ENV PYTHON=3.6
+ENV BOKEH_VERSION=0.13.0
 
 # set default conda channels
 RUN conda config --set auto_update_conda off
