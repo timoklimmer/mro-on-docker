@@ -8,3 +8,24 @@ The image created here is not intended for use with Azure Machine Learning Servi
 As always, artifacts are provided "as is". Feel free to reuse but don't blame me if things go wrong.
 
 Enjoy!
+
+
+## azure devops setup (TODO)
+* Create a new project at https://dev.azure.com
+* Create a new git repository in azure devops or github.
+
+### Create a new service principal (SP)
+The SP will be used by Azure DevOps to connect to your Azure subscription and manage resources on your behalf.
+
+````az account show````
+````az ad sp create-for-rbac -n "packer-4711" --role contributor --scopes /subscriptions/YOURSUBSCRIPTIONIDGOESHERE````
+
+### create an azure container registry (azurecr.io)
+This will your main container registry.
+````az acr create -n MyRegistry -g MyResourceGroup --sku Standard````
+
+azure container registry docker login
+````az acr login --name ACRNAME -l westeurope````
+
+## Related Docs
+https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-deploy-and-where#aci

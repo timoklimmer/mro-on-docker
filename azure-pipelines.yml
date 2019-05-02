@@ -1,0 +1,15 @@
+# Shiny R on Microsoft R Open Docker
+
+trigger:
+- master
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+steps:
+- task: Docker@1
+  inputs:
+    containerRegistry: 'datascienceacr4711'
+    repository: 'mro-shiny'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
