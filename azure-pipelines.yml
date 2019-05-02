@@ -17,9 +17,9 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile.ropen'
 
-- task: Docker@2
-  inputs:
-    containerRegistry: 'datascienceacr4711'
-    repository: 'bokeh-on-docker'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile.bokeh'
+# - task: Docker@2
+#   inputs:
+#     containerRegistry: 'datascienceacr4711'
+#     repository: 'bokeh-on-docker'
+#     command: 'buildAndPush'
+#     Dockerfile: '**/Dockerfile.bokeh'
