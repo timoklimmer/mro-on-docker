@@ -8,3 +8,19 @@ The image created here is not intended for use with Azure Machine Learning Servi
 As always, artifacts are provided "as is". Feel free to reuse but don't blame me if things go wrong.
 
 Enjoy!
+
+# Azure DevOps Setup
+
+## Prerequisites
+
+
+# Data Science Project Setup
+* Create a new project at https://dev.azure.com
+* Create a new git repository in azure devops or github.
+
+## Create a new service principal
+Get your current subscription details
+````az account show````
+
+create the SP
+````az ad sp create-for-rbac -n "packer-4711" --role contributor --scopes /subscriptions/YOURSUBSCRIPTIONIDGOESHERE````
