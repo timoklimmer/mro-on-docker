@@ -31,11 +31,11 @@ RUN tar -xf microsoft-r-open-3.5.1.tar.gz
 RUN ./microsoft-r-open/install.sh -a -u
 RUN rm microsoft-r-open-3.5.1.tar.gz
 
-# install ODBC driver for SQL Server
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
-RUN apt-get update -y
-RUN ACCEPT_EULA=Y apt-get install msodbcsql17 -y
+# # install ODBC driver for SQL Server
+# RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+# RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+# RUN apt-get update -y
+# RUN ACCEPT_EULA=Y apt-get install msodbcsql17 -y
 
 # install additional packages
 # notes: - see Dockerfile reference for copying files/directories into the image in case you want
@@ -49,9 +49,11 @@ ENV CURL_CA_BUNDLE="/utils/microsoft-r-open-3.4.3/lib64/R/lib/microsoft-r-cacert
 # data.table
 RUN Rscript -e "install.packages('data.table')"
 # RODBC (not installed by default in MRO's Linux version)
-RUN Rscript -e "install.packages('RODBC')"
+# RUN Rscript -e "install.packages('RODBC')"
 # shiny
 RUN Rscript -e "install.packages('shiny')"
 COPY ./shiny-app /shiny-app
+COPY ./scripts/startup.sh /root
+RUN chmod +x /root/startup.sh
 EXPOSE 80
-ENTRYPOINT Rscript -e "shiny::runApp(appDir='/shiny-app', host='0.0.0.0', port=80)"
+ENTRYPOINT [/root/startup.sh]
