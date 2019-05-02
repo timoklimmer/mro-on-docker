@@ -4,9 +4,6 @@ FROM ubuntu:16.04
 # give our new image a name
 LABEL Name=mro-on-docker Version=0.0.1
 
-# Set desired versions
-ENV MRO-VERSION="3.5.2"
-
 # set the bash shell as default
 # note: this is required. if not set, we cannot "run interactive" the image
 CMD /bin/bash
@@ -15,16 +12,16 @@ CMD /bin/bash
 ARG DEBIAN_FRONTEND=noninteractive
 
 # update Ubuntu's package information
-RUN apt-get update -y -qq
+RUN apt-get update -y
 
 # update os.
-RUN apt-get dist-upgrade -y -qq
+#RUN apt-get dist-upgrade -y -qq
 
 # install some basic packages needed later
 RUN apt-get install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev unzip curl apt-transport-https unixodbc unixodbc-dev -y
 
 # cleanup apt-get mess
-RUN apt-get autoremove -y -qq
+# RUN apt-get autoremove -y -qq
 
 # install Microsoft R Open (with MKL)
 # notes: - see https://mran.microsoft.com/download for newest versions
@@ -56,5 +53,5 @@ RUN Rscript -e "install.packages('RODBC')"
 # shiny
 RUN Rscript -e "install.packages('shiny')"
 COPY ./shiny-app /shiny-app
-EXPOSE 80/tcp
+EXPOSE 80
 ENTRYPOINT Rscript -e "shiny::runApp(appDir='/shiny-app', host='0.0.0.0', port=80)"
