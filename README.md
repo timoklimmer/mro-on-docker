@@ -14,11 +14,13 @@ Enjoy!
 ## Prerequisites
 
 
-# Data Science Project Setup
+# Data-Science Project Setup
 * Create a new project at https://dev.azure.com
 * Create a new git repository in azure devops or github.
 
-## Create a new service principal
+## Create a new service principal (SP)
+The SP will be used by Azure DevOps to connect to your Azure subscription and manage resources on your behalf.
+
 Get your current subscription details
 ````az account show````
 
