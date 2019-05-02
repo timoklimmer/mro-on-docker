@@ -53,7 +53,9 @@ RUN Rscript -e "install.packages('data.table')"
 # shiny
 RUN Rscript -e "install.packages('shiny')"
 COPY ./shiny-app /shiny-app
-COPY ./scripts/startup.sh /root
-RUN chmod +x /root/startup.sh
+COPY ./scripts/entrypoint.sh /usr/local/bin/
+RUN ln -s usr/local/bin/entrypoint.sh /
+RUN chown -R root:root /root
 EXPOSE 80
-ENTRYPOINT [/root/startup.sh]
+
+ENTRYPOINT ["entrypoint.sh"]
