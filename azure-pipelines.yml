@@ -1,7 +1,4 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Shiny R on Microsoft R Open Docker
 
 trigger:
 - master
@@ -10,16 +7,9 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 steps:
-- task: Docker@2
+- task: Docker@1
   inputs:
     containerRegistry: 'datascienceacr4711'
-    repository: 'mro-on-docker'
+    repository: 'mro-shiny'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile.mro'
-
-# - task: Docker@2
-#   inputs:
-#     containerRegistry: 'datascienceacr4711'
-#     repository: 'bokeh-on-docker'
-#     command: 'buildAndPush'
-#     Dockerfile: '**/Dockerfile.bokeh'
+    Dockerfile: '**/Dockerfile'

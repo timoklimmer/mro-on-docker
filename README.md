@@ -18,15 +18,22 @@ Enjoy!
 * Create a new project at https://dev.azure.com
 * Create a new git repository in azure devops or github.
 
-## Create a new service principal (SP)
+# Create required Cloud Resources on Azure 
+
+### Create a new service principal (SP)
 The SP will be used by Azure DevOps to connect to your Azure subscription and manage resources on your behalf.
 
-Get your current subscription details
 ````az account show````
 
-create the SP
 ````az ad sp create-for-rbac -n "packer-4711" --role contributor --scopes /subscriptions/YOURSUBSCRIPTIONIDGOESHERE````
 
+
+### create an azure container registry (azurecr.io)
+This will your main container registry.
+````az acr create -n MyRegistry -g MyResourceGroup --sku Standard````
+
+azure container registry docker login
+````az acr login --name ACRNAME -l westeurope````
 
 # Related Docs
 https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-deploy-and-where#aci

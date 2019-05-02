@@ -2,7 +2,7 @@
 FROM ubuntu:18.04
 
 # give our new image a name
-LABEL Name=mro-on-docker 
+LABEL Name=mro-shiny 
 LABEL Version=1.0.0
 
 # let Ubuntu know that we cannot use an interactive frontend during Docker image build
@@ -18,12 +18,12 @@ RUN echo 'Creating notroot user and group from host' \
 # update os & install some basic packages needed later
 RUN apt-get update -y -qq \
     && apt-get dist-upgrade -y -qq \
-    && apt-get install -y -qq wget curl build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev apt-transport-https unzip unixodbc unixodbc-dev \
+    && apt-get install -y -qq --no-install-recommends wget curl build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev apt-transport-https unzip unixodbc unixodbc-dev \
     && apt-get autoremove -y -qq
 
 # install Microsoft R Open (with MKL)
 # notes: - see https://mran.microsoft.com/download for newest versions
-RUN wget -q http://mran.blob.core.windows.net/install/mro/3.5.2/ubuntu/microsoft-r-open-3.5.2.tar.gz \
+RUN wget https://mran.blob.core.windows.net/install/mro/3.5.2/ubuntu/microsoft-r-open-3.5.2.tar.gz \
     && tar -xf microsoft-r-open-3.5.2.tar.gz \
     && ./microsoft-r-open/install.sh -a -u \
     && rm microsoft-r-open-3.5.2.tar.gz \
