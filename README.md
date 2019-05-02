@@ -9,16 +9,12 @@ As always, artifacts are provided "as is". Feel free to reuse but don't blame me
 
 Enjoy!
 
-# Azure DevOps Setup
 
-## Prerequisites
-
-
-# Data-Science Project Setup
+## azure devops setup
 * Create a new project at https://dev.azure.com
 * Create a new git repository in azure devops or github.
 
-# Create required Cloud Resources on Azure 
+## Create required Cloud Resources on Azure 
 
 ### Create a new service principal (SP)
 The SP will be used by Azure DevOps to connect to your Azure subscription and manage resources on your behalf.
