@@ -1,4 +1,4 @@
-FROM conda/miniconda3
+FROM continuumio/miniconda:latest
 ENV CONDA_DIR="/opt/conda"
 ENV PATH="$CONDA_DIR/bin:$PATH"
 ENV BOKEH_EXAMPLE_DIR bokeh_examples
