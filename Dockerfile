@@ -4,6 +4,9 @@ FROM ubuntu:16.04
 # give our new image a name
 LABEL Name=mro-on-docker Version=0.0.1
 
+# Set desired versions
+ENV MRO-VERSION="3.5.2"
+
 # set the bash shell as default
 # note: this is required. if not set, we cannot "run interactive" the image
 CMD /bin/bash
@@ -27,10 +30,10 @@ RUN apt-get autoremove -y -qq
 # install Microsoft R Open (with MKL)
 # notes: - see https://mran.microsoft.com/download for newest versions
 RUN apt-get install wget -y
-RUN wget https://mran.blob.core.windows.net/install/mro/3.5.1/microsoft-r-open-3.5.1.tar.gz
-RUN tar -xf microsoft-r-open-3.5.1.tar.gz
+RUN wget https://mran.blob.core.windows.net/install/mro/${MRO-VERSION}/microsoft-r-open-${MRO-VERSION}.tar.gz
+RUN tar -xf microsoft-r-open-${MRO-VERSION}.tar.gz
 RUN ./microsoft-r-open/install.sh -a -u
-RUN rm microsoft-r-open-3.5.1.tar.gz
+RUN rm microsoft-r-open-${MRO-VERSION}.tar.gz
 
 # install ODBC driver for SQL Server
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
