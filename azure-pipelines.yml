@@ -15,7 +15,7 @@ steps:
     containerRegistry: 'datascienceacr4711'
     repository: 'mro-on-docker'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile.ropen'
+    Dockerfile: '**/Dockerfile.mro'
 
 # - task: Docker@2
 #   inputs:
