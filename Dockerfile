@@ -1,5 +1,5 @@
-# use Ubuntu 16.04 as base image
-FROM ubuntu:16.04
+# use Ubuntu 18.04 as base image
+FROM ubuntu:18.04
 
 # give our new image a name
 LABEL Name=mro-on-docker Version=0.0.1
@@ -19,26 +19,27 @@ RUN apt-get install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev u
 
 # install Microsoft R Open (with MKL)
 # notes: - see https://mran.microsoft.com/download for newest versions
-RUN apt-get install wget -y
-RUN wget https://mran.blob.core.windows.net/install/mro/3.5.1/microsoft-r-open-3.5.1.tar.gz
-RUN tar -xf microsoft-r-open-3.5.1.tar.gz
-RUN ./microsoft-r-open/install.sh -a -u
-RUN rm microsoft-r-open-3.5.1.tar.gz
+RUN apt-get install wget -y \
+ && wget https://mran.blob.core.windows.net/install/mro/3.5.2/ubuntu/microsoft-r-open-3.5.2.tar.gz \
+ && tar -xf microsoft-r-open-3.5.2.tar.gz \
+ && ./microsoft-r-open/install.sh -a -u \
+ &&  rm microsoft-r-open-3.5.2.tar.gz
 
 # install ODBC driver for SQL Server
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
-RUN apt-get update -y
-RUN ACCEPT_EULA=Y apt-get install msodbcsql17 -y
+# note: don't forget to update the URL below for the right OS version in case the OS version is changed
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+ && curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+ && apt-get update -y \
+ && ACCEPT_EULA=Y apt-get install msodbcsql17 -y
 
 # install additional packages
 # notes: - see Dockerfile reference for copying files/directories into the image in case you want
 #          to add your own packages which are not on CRAN
 #        - re-install of curl/httr to fix a bug with devtools's package installation feature
 # devtools
-RUN Rscript -e "install.packages('devtools')"
-RUN Rscript -e "remove.packages(c('curl', 'httr'))"
-RUN Rscript -e "install.packages(c('curl', 'httr'))"
+RUN Rscript -e "install.packages('devtools')" \
+ && Rscript -e "remove.packages(c('curl', 'httr'))" \
+ && Rscript -e "install.packages(c('curl', 'httr'))"
 ENV CURL_CA_BUNDLE="/utils/microsoft-r-open-3.4.3/lib64/R/lib/microsoft-r-cacert.pem"
 # data.table
 RUN Rscript -e "install.packages('data.table')"
