@@ -50,5 +50,6 @@ RUN Rscript -e "install.packages('RODBC')"
 # shiny
 RUN Rscript -e "install.packages('shiny')"
 COPY ./shiny-app /shiny-app
+COPY ./shiny-computer-vision-api-sample /shiny-computer-vision-api-sample
 EXPOSE 80/tcp
 ENTRYPOINT Rscript -e "shiny::runApp(appDir='/shiny-app', host='0.0.0.0', port=80)"
