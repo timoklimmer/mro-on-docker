@@ -20,10 +20,10 @@ RUN apt-get install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev u
 # install Microsoft R Open (with MKL)
 # notes: - see https://mran.microsoft.com/download for newest versions
 RUN apt-get install wget -y \
- && wget https://mran.blob.core.windows.net/install/mro/3.5.2/ubuntu/microsoft-r-open-3.5.2.tar.gz \
- && tar -xf microsoft-r-open-3.5.2.tar.gz \
+ && wget https://mran.blob.core.windows.net/install/mro/3.5.3/ubuntu/microsoft-r-open-3.5.3.tar.gz \
+ && tar -xf microsoft-r-open-3.5.3.tar.gz \
  && ./microsoft-r-open/install.sh -a -u \
- &&  rm microsoft-r-open-3.5.2.tar.gz
+ &&  rm microsoft-r-open-3.5.3.tar.gz
 
 # install ODBC driver for SQL Server
 # note: don't forget to update the URL below for the right OS version in case the OS version is changed
