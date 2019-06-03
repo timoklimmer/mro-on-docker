@@ -41,6 +41,8 @@ RUN Rscript -e "install.packages('devtools')" \
  && Rscript -e "remove.packages(c('curl', 'httr'))" \
  && Rscript -e "install.packages(c('curl', 'httr'))"
 ENV CURL_CA_BUNDLE="/utils/microsoft-r-open-3.4.3/lib64/R/lib/microsoft-r-cacert.pem"
+# jsonlite
+RUN Rscript -e "install.packages('jsonlite')"
 # data.table
 RUN Rscript -e "install.packages('data.table')"
 # RODBC (not installed by default in MRO's Linux version)
