@@ -20,10 +20,10 @@ RUN apt-get install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev u
 # install Microsoft R Open (with MKL)
 # notes: - see https://mran.microsoft.com/download for newest versions
 RUN apt-get install wget -y \
- && wget https://mran.blob.core.windows.net/install/mro/3.5.3/ubuntu/microsoft-r-open-3.5.3.tar.gz \
- && tar -xf microsoft-r-open-3.5.3.tar.gz \
+ && wget https://mran.blob.core.windows.net/install/mro/4.0.2/Ubuntu/microsoft-r-open-4.0.2.tar.gz \
+ && tar -xf microsoft-r-open-4.0.2.tar.gz \
  && ./microsoft-r-open/install.sh -a -u \
- &&  rm microsoft-r-open-3.5.3.tar.gz
+ &&  rm microsoft-r-open-4.0.2.tar.gz
 
 # install ODBC driver for SQL Server
 # note: don't forget to update the URL below for the right OS version in case the OS version is changed
@@ -50,6 +50,5 @@ RUN Rscript -e "install.packages('RODBC')"
 # shiny
 RUN Rscript -e "install.packages('shiny')"
 COPY ./shiny-app /shiny-app
-COPY ./shiny-computer-vision-api-sample /shiny-computer-vision-api-sample
 EXPOSE 80/tcp
 ENTRYPOINT Rscript -e "shiny::runApp(appDir='/shiny-app', host='0.0.0.0', port=80)"

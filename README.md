@@ -10,8 +10,3 @@ The image created here is not intended for use with Azure Machine Learning Servi
 As always, artifacts are provided "as is". Feel free to reuse but don't blame me if things go wrong.
 
 Enjoy!
-
-
-**Update**: Now includes another Shiny sample that shows how to use the Cognitive Services Computer Vision API from Shiny.
-To activate, modify the Dockerfile to point to folder `shiny-computer-vision-api-sample` instead of folder `shiny-app` before
-building the image.
